@@ -57,7 +57,7 @@ const gap = (n = 120) => new Paragraph({ children: [], spacing: { after: n, line
 // nota: "Nota." en cursiva + texto, y lineas (formulas/comandos) sangradas, sin recuadro
 function note(intro, lines = [], mono = false) {
   const head = new Paragraph({ keepNext: lines.length > 0, spacing: { before: 120, after: 60, line: 360 },
-    children: [new TextRun({ text: "Nota. ", italics: true, font: FONT, size: SZ }), ...runs(intro)] });
+    children: [new TextRun({ text: "Nota. ", bold: true, font: FONT, size: SZ }), ...runs(intro, { bold: true })] });
   return [head, ...lines.map((l, i) => new Paragraph({
     children: [new TextRun({ text: l, font: mono ? MONO : FONT, size: mono ? 20 : SZ })],
     spacing: { after: i === lines.length - 1 ? 160 : 0, line: 300 }, keepLines: true, keepNext: i < lines.length - 1,
