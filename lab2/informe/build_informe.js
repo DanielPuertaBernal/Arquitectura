@@ -54,15 +54,15 @@ function numList(items) {
 }
 const gap = (n = 120) => new Paragraph({ children: [], spacing: { after: n, line: 240 } });
 
-// caja de codigo / formulas (recuadro con borde simple)
-function box(lines) {
-  const bd = { style: BorderStyle.SINGLE, size: 6, color: "000000", space: 4 };
-  return lines.map((l) => new Paragraph({
-    children: [new TextRun({ text: l === "" ? " " : l, font: MONO, size: 19 })],
-    spacing: { after: 0, line: 252 }, keepLines: true, keepNext: true,
-    indent: { left: 200, right: 200 },
-    border: { top: bd, bottom: bd, left: bd, right: bd },
-  })).concat([gap(160)]);
+// nota: "Nota." en cursiva + texto, y lineas (formulas/comandos) sangradas, sin recuadro
+function note(intro, lines = [], mono = false) {
+  const head = new Paragraph({ keepNext: lines.length > 0, spacing: { before: 120, after: 60, line: 360 },
+    children: [new TextRun({ text: "Nota. ", italics: true, font: FONT, size: SZ }), ...runs(intro)] });
+  return [head, ...lines.map((l, i) => new Paragraph({
+    children: [new TextRun({ text: l, font: mono ? MONO : FONT, size: mono ? 20 : SZ })],
+    spacing: { after: i === lines.length - 1 ? 160 : 0, line: 300 }, keepLines: true, keepNext: i < lines.length - 1,
+    indent: { left: 720 },
+  }))];
 }
 
 // ---- tablas y figuras APA ----
@@ -79,9 +79,7 @@ function table(title, headers, rows, widths, opts = {}) {
   const nr = rows.length;
   const cell = (txt, i, ri) => { // ri = -1 cabecera
     const head = ri === -1;
-    const b = { top: none, left: none, right: none,
-      bottom: (head || ri === nr - 1) ? line : none };
-    if (head) b.top = line;
+    const b = { top: line, left: line, right: line, bottom: line }; // tabla tradicional: todos los bordes
     return new TableCell({
       width: { size: widths[i], type: WidthType.DXA }, borders: b,
       margins: { top: 40, bottom: 40, left: 80, right: 80 }, verticalAlign: VerticalAlign.CENTER,
@@ -179,11 +177,10 @@ add(
     ["Archivo borrado", "Primer byte de la entrada = 0xE5", "Bandera \"en uso\" = 0"],
     ["Permisos y journaling", "No", "Sí"],
   ], [2400, 3400, 3560]),
-  P("Fórmulas de FAT32 usadas en todo el informe (SPC = sectores por cluster, SPF = sectores por FAT):"),
-  ...box([
+  ...note("Fórmulas de FAT32 usadas en todo el informe (SPC = sectores por cluster, SPF = sectores por FAT):", [
     "Sector del cluster c = Reservados + NFAT x SPF + (c - 2) x SPC",
-    "Sector de la raíz    = Reservados + NFAT x SPF + (ClusterRaíz - 2) x SPC",
-    "Cluster inicial      = (High << 16) | Low",
+    "Sector de la raíz = Reservados + NFAT x SPF + (ClusterRaíz - 2) x SPC",
+    "Cluster inicial = (High << 16) | Low",
   ]),
 );
 
@@ -340,11 +337,10 @@ add(
   B("`fat32_analyzer.py` lee la imagen FAT32 y muestra el Boot Sector, la cadena de la raíz, el árbol de carpetas, los archivos por extensión y los borrados."),
   B("`ntfs/ntfs_analyzer.py` hace lo propio con NTFS: MBR, Boot Sector, registros MFT, índices, rutas, borrados y flujos alternativos."),
   B("Ambos usan solo la biblioteca estándar y no montan la imagen."),
-  P("Ejemplos de uso:"),
-  ...box([
+  ...note("Ejemplos de uso de los analizadores:", [
     "python3 fat32_analyzer.py Arqui22025.img --find pdf jpg docx apk asm",
     "python3 -I ntfs/ntfs_analyzer.py ntfs/lab_ntfs.img --path /Proyectos/2025/Lab2/informe/datos_largo.bin",
-  ]),
+  ], true),
   P("Resultado de las pruebas automáticas: 35 pruebas en FAT32 y 18 en NTFS, todas correctas."),
 );
 
