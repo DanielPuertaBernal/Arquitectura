@@ -1,0 +1,5 @@
+# Disk images exceed GitHub 100 MB limit; get them from the practice zip
+*.img
+*.iso
+__pycache__/
+*.pyc

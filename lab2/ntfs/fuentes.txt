@@ -1,0 +1,7 @@
+# Fuentes de los archivos descargados (generado por build_ntfs_image.sh)
+https://www.rfc-editor.org/rfc/rfc9293.pdf -> /Documentos/rfc9293.pdf
+https://www.rfc-editor.org/rfc/rfc9000.pdf -> /Documentos/rfc9000.pdf
+https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/500px-The_Earth_seen_from_Apollo_17.jpg -> /Imagenes/tierra.jpg
+https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/500px-FullMoon2010.jpg -> /Imagenes/luna.jpg
+(generado localmente con PIL) -> /Imagenes/logo.png
+https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe -> /Aplicaciones/putty.exe (firma MZ verificada)
