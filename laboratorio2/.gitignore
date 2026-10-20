@@ -1,4 +1,4 @@
-# Disk images exceed GitHub 100 MB limit; get them from the practice zip
+# Disk images exceed GitHub 100 MB limit; download them from the lab2-imagenes release
 *.img
 *.iso
 __pycache__/

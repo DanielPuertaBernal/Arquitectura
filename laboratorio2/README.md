@@ -18,12 +18,22 @@ Localización manual de archivos y carpetas en imágenes FAT32 y NTFS (sin monta
 
 ## Imágenes de disco
 
-Las imágenes **no están en el repositorio** porque superan el límite de 100 MB de GitHub:
+Las imágenes superan el límite de 100 MB de GitHub, así que se publican comprimidas en el Release [`lab2-imagenes`](https://github.com/DanielPuertaBernal/Arquitectura/releases/tag/lab2-imagenes):
 
-- `Arqui22025.img` (FAT32, 507 MB): va en la raíz de `laboratorio2/`.
-- `ntfs/lab_ntfs.img` (NTFS, 211 MB): va en `laboratorio2/ntfs/`. También se puede recrear con `ntfs/build_ntfs_image.sh`.
+| Imagen | Sistema | Tamaño | Descarga | Destino |
+|---|---|---|---|---|
+| `Arqui22025.img` | FAT32 | 507 MB (469 MB comprimida) | `Arqui22025.img.zst` | `laboratorio2/` |
+| `lab_ntfs.img` | NTFS | 211 MB (2.3 MB comprimida) | `lab_ntfs.img.zst` | `laboratorio2/ntfs/` |
 
-Se sacan del zip de práctica del equipo. Para comprobar que la copia está bien: `sha256sum -c Arqui22025.img.sha256` y `cd ntfs && sha256sum -c lab_ntfs.img.sha256`.
+Descargar, descomprimir y verificar (desde `laboratorio2/`):
+
+```bash
+gh release download lab2-imagenes -p '*.zst'
+zstd -d Arqui22025.img.zst && sha256sum -c Arqui22025.img.sha256
+zstd -d lab_ntfs.img.zst -o ntfs/lab_ntfs.img && (cd ntfs && sha256sum -c lab_ntfs.img.sha256)
+```
+
+Sin `gh`, se descargan desde la página del Release. La imagen NTFS también se puede recrear con `ntfs/build_ntfs_image.sh`.
 
 Ojo: `arqui.iso` es FAT16 y **no** es la imagen del laboratorio.
 
