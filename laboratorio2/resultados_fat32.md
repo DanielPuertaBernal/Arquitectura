@@ -8,7 +8,7 @@ Todos los valores de este documento fueron obtenidos de la imagen real con `fat3
 ## 0. Cómo reproducir
 
 ```bash
-cd lab2
+cd laboratorio2
 python3 fat32_analyzer.py Arqui22025.img                       # boot sector, raíz y cadena de la raíz
 python3 fat32_analyzer.py Arqui22025.img --tree                # árbol completo + borrados
 python3 fat32_analyzer.py Arqui22025.img --find pdf jpg jpeg docx apk exe asm   # detalle por archivo

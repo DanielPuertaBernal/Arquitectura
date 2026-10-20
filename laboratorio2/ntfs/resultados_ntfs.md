@@ -402,7 +402,7 @@ Los números de registro (35, 36, 37, 39, 58) coinciden con los del analizador. 
 ## 11. Cómo reproducir
 
 ```bash
-cd lab2/ntfs
+cd laboratorio2/ntfs
 ./build_ntfs_image.sh                 # reconstruye lab_ntfs.img (requiere udisksctl, mkntfs, ntfscp, sfdisk)
 python3 -I ntfs_analyzer.py lab_ntfs.img                       # MBR + boot sector + fórmulas
 python3 -I ntfs_analyzer.py lab_ntfs.img --tree                # árbol desde el registro 5

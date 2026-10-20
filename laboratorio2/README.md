@@ -20,8 +20,8 @@ Localización manual de archivos y carpetas en imágenes FAT32 y NTFS (sin monta
 
 Las imágenes **no están en el repositorio** porque superan el límite de 100 MB de GitHub:
 
-- `Arqui22025.img` (FAT32, 507 MB): va en la raíz de `lab2/`.
-- `ntfs/lab_ntfs.img` (NTFS, 211 MB): va en `lab2/ntfs/`. También se puede recrear con `ntfs/build_ntfs_image.sh`.
+- `Arqui22025.img` (FAT32, 507 MB): va en la raíz de `laboratorio2/`.
+- `ntfs/lab_ntfs.img` (NTFS, 211 MB): va en `laboratorio2/ntfs/`. También se puede recrear con `ntfs/build_ntfs_image.sh`.
 
 Se sacan del zip de práctica del equipo. Para comprobar que la copia está bien: `sha256sum -c Arqui22025.img.sha256` y `cd ntfs && sha256sum -c lab_ntfs.img.sha256`.
 
@@ -30,7 +30,7 @@ Ojo: `arqui.iso` es FAT16 y **no** es la imagen del laboratorio.
 ## Uso rápido
 
 ```bash
-cd lab2
+cd laboratorio2
 python3 fat32_analyzer.py Arqui22025.img --tree
 python3 fat32_analyzer.py Arqui22025.img --find pdf jpg asm docx
 python3 ntfs/ntfs_analyzer.py ntfs/lab_ntfs.img --tree
