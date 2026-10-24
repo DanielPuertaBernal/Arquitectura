@@ -7,6 +7,7 @@ Localización manual de archivos y carpetas en imágenes FAT32 y NTFS (sin monta
 | Ruta | Qué es |
 |---|---|
 | `informe/Informe_Laboratorio2_FAT32_NTFS.pdf` | Informe final (también en `.docx`) |
+| `informe/Guia_Laboratorio_NTFS.docx` | Guía de laboratorio NTFS del enunciado nuevo (`enunciado/Guía Laboratorio NTFS (nueva).docx`) |
 | `GUIA_ESTUDIO.md` | Guía de estudio con conceptos, diagramas y preguntas probables |
 | `enunciado/` | Enunciado oficial del laboratorio |
 | `fat32_analyzer.py`, `tests/` | Analizador FAT32 y sus pruebas |
@@ -14,7 +15,8 @@ Localización manual de archivos y carpetas en imágenes FAT32 y NTFS (sin monta
 | `capturas/`, `ntfs/capturas/` | Figuras tipo editor hexadecimal generadas desde los bytes reales |
 | `capturas.py`, `ntfs/capturas_ntfs.py` | Generadores de esas figuras |
 | `resultados_fat32.md`, `ntfs/resultados_ntfs.md` | Resultados detallados |
-| `informe/build_informe.js` | Genera el informe `.docx` (requiere `npm install docx`) |
+| `informe/build_informe.js`, `informe/build_guia_ntfs.js` | Generan el informe y la guía `.docx` con helpers comunes en `informe/docx_comun.js` (requiere `npm install docx`) |
+| `ntfs/build_guia_image.sh`, `ntfs/capturas_guia.py`, `ntfs/capturas_guia/` | Imagen de la guía (`lab_ntfs.img` + `LAB_NTFS.txt`) y sus figuras |
 
 ## Imágenes de disco
 
@@ -34,6 +36,14 @@ zstd -d lab_ntfs.img.zst -o ntfs/lab_ntfs.img && (cd ntfs && sha256sum -c lab_nt
 ```
 
 Sin `gh`, se descargan desde la página del Release. La imagen NTFS también se puede recrear con `ntfs/build_ntfs_image.sh`.
+
+La guía NTFS usa `ntfs/lab_ntfs_guia.img`, que se deriva de `lab_ntfs.img` añadiendo `LAB_NTFS.txt` en la raíz (registro MFT 120):
+
+```bash
+ntfs/build_guia_image.sh   # sin sudo: monta la partición con udisksctl
+```
+
+Cada ejecución produce marcas de tiempo distintas, así que el hash de `lab_ntfs_guia.img.sha256` cambia; los offsets y números de registro se mantienen.
 
 Ojo: `arqui.iso` es FAT16 y **no** es la imagen del laboratorio.
 
