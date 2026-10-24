@@ -5,6 +5,7 @@ Same approach as capturas_ntfs.py: offsets come from the parsed structures
 (ntfs_analyzer.py), so every highlight points at real bytes.
 Usage: python3 capturas_guia.py [IMAGE] [OUT_DIR]
 """
+import json
 import shutil
 import struct
 import subprocess
@@ -120,6 +121,11 @@ def main():
 
     # g06 test file record: header and attribute list
     si, fn, da = lab.attr(na.ATTR_STD_INFO), lab.attr(na.ATTR_FILE_NAME), lab.attr(na.ATTR_DATA)
+    # Values that change when the image is rebuilt: the guide builder reads them from here
+    (out / "valores.json").write_text(json.dumps({
+        "registro": lab.number, "secuencia": lab.seq, "tamano": da.real_size,
+        "modificado_utc": na.filetime(struct.unpack_from("<Q", si.content, 8)[0]),
+    }, indent=2) + "\n")
     c = fn.offset + fn.content_offset
     render_hex(image, lab.sector, out / "g06_lab_registro.png",
                t(lab.sector, f"registro {lab.number} (LAB_NTFS.txt)"), [

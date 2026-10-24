@@ -10,6 +10,9 @@ const {
 
 const CAP = "ntfs/capturas_guia/";
 const hasTsk = fs.existsSync(path.join(ROOT, CAP, "g13_tsk_fsstat.png"));
+// Valores que cambian al regenerar la imagen (los escribe ntfs/capturas_guia.py)
+const LAB = JSON.parse(fs.readFileSync(path.join(ROOT, CAP, "valores.json"), "utf8"));
+if (LAB.registro !== 120) throw new Error(`LAB_NTFS.txt quedo en el registro ${LAB.registro}; la guia documenta el 120`);
 
 // =====================================================================
 // PORTADA (replica de la plantilla UCO)
@@ -167,8 +170,8 @@ add(
     ["Nombre", "`LAB_NTFS.txt`"],
     ["Ubicación", "Raíz del volumen (`/LAB_NTFS.txt`)"],
     ["Tamaño exacto", "114 bytes (la `á` ocupa 2 bytes en UTF-8)"],
-    ["Fecha de modificación", "2026-10-24 11:10:32 (UTC-5)"],
-    ["Registro MFT", "120 (secuencia 2)"],
+    ["Fecha de modificación", LAB.modificado_utc],
+    ["Registro MFT", `${LAB.registro} (secuencia ${LAB.secuencia})`],
   ], [3000, 6360]),
   H2("Cálculo de la posición de la MFT"),
   P("Del sector de arranque se toman B = 512 bytes por sector, S = 8 sectores por cluster y LCN de $MFT = 4."),
@@ -210,7 +213,7 @@ add(
   H1("Análisis de los atributos y localización de los datos"),
   H2("Atributos del registro"),
   ...table("Atributos encontrados en el registro 120", ["Offset", "Tipo", "Atributo", "Contenido en la imagen"], [
-    ["0x30", "0x10", "$STANDARD_INFORMATION", "Fechas de creación, modificación y acceso (2026-10-24 16:10:32 UTC) y atributos DOS"],
+    ["0x30", "0x10", "$STANDARD_INFORMATION", `Fechas de creación, modificación y acceso (${LAB.modificado_utc}) y atributos DOS`],
     ["0x90", "0x30", "$FILE_NAME", "Nombre `LAB_NTFS.txt`, padre = registro 5 (raíz), tamaño 114"],
     ["0x108", "0x80", "$DATA", "Residente: los 114 bytes del archivo"],
     ["0x198", "0xD0", "$EA_INFORMATION", "Resumen de los atributos extendidos"],
