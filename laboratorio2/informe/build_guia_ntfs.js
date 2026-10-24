@@ -180,7 +180,7 @@ add(
   ...figure(CAP + "g03_mft_registro0.png", "Registro 0 ($MFT) en OffsetMFT: atributo $DATA con un solo data run", 5.6, 7.2),
   H2("Identificación del registro MFT"),
   ...numList([
-    "Obtener el número de registro del archivo. Con The Sleuth Kit, `fls -o 2048 lab_ntfs_guia.img` lista `LAB_NTFS.txt` con su número de registro. A mano, se obtiene de la entrada del índice de la raíz (figura anterior): referencia `78 00 00 00 00 00` = 120.",
+    "Obtener el número de registro del archivo. Con The Sleuth Kit, `fls -o 2048 lab_ntfs_guia.img` muestra la línea `r/r 120-128-2: LAB_NTFS.txt`: registro 120, atributo tipo 128 (`$DATA`) con identificador 2. A mano, se obtiene de la entrada del índice de la raíz (figura anterior): referencia `78 00 00 00 00 00` = 120.",
     "Tomar R = 1024 bytes (byte 0x40 del VBR).",
     "Calcular el offset del registro con la fórmula de abajo.",
     "Ir a ese offset en el editor y verificar la firma `FILE`.",
@@ -254,7 +254,7 @@ add(
   P("El analizador `ntfs/ntfs_analyzer.py` repite todos los cálculos leyendo la imagen directamente, sin montarla, y llega a los mismos offsets. La figura siguiente muestra el recorrido completo hasta `LAB_NTFS.txt`."),
   ...figure(CAP + "g11_analizador_lab.png", "Recorrido de /LAB_NTFS.txt con el analizador", 5.6, 5.6),
   ...(hasTsk ? [
-    P("Con The Sleuth Kit se obtuvieron los mismos valores: `fsstat` confirma los parámetros del VBR, `fls` el número de registro y `istat` los atributos del registro 120."),
+    P("Con The Sleuth Kit se obtuvieron los mismos valores sin ninguna discrepancia: `fsstat` confirma el número de serie, el cluster 4 de la MFT, el 25 599 de `$MFTMirr`, los registros de 1024 bytes y el directorio raíz en el registro 5; `fls` da el registro 120 de `LAB_NTFS.txt`, e `istat` lista los mismos cinco atributos residentes, con `$DATA` de 114 bytes. Además, el contenido extraído con `icat -o 2048 lab_ntfs_guia.img 120` tiene el mismo SHA-256 (`ffef8fb0bb1ef274...`) que el texto original."),
     ...figure(CAP + "g13_tsk_fsstat.png", "Parámetros del volumen con fsstat", 5.6, 5.0),
     ...figure(CAP + "g14_tsk_fls.png", "Entradas de la raíz con fls", 5.6, 5.0),
     ...figure(CAP + "g15_tsk_istat.png", "Atributos del registro 120 con istat", 5.6, 6.0),
