@@ -19,3 +19,26 @@ Las imágenes de disco superan el límite de 100 MB por archivo de GitHub, así 
 - Python 3.10+ (los analizadores solo usan la biblioteca estándar).
 - `zstd` para descomprimir las imágenes.
 - Node.js y `npm install docx` solo si se quiere regenerar el informe `.docx`.
+
+## Contenidos de clase
+
+La carpeta [`contenidos-clase/`](contenidos-clase/) reúne las diapositivas vistas en el curso, en orden de clase:
+
+| N.º | Tema |
+|---|---|
+| 01 | Historia del computador |
+| 02 | Organización de computadoras |
+| 03 | CPU |
+| 04 | Lenguaje ensamblador: fundamentos y aplicaciones |
+| — | Repaso Assembler · Instrucciones MIPS (`.xlsx`) |
+| 05 | ALU |
+| 06 | RISC, CISC y elementos de microarquitectura |
+| 07 | Ejecución de instrucciones |
+| 08 | Pipelining y multicore |
+| 09 | Jerarquía de memoria · Raspberry 3 y Raspberry 4 |
+| 10 | Unidades de almacenamiento y sistemas de archivos · 10.1 Sistema de archivos FAT16 |
+| 11 | Discos de estado sólido (11 y 11.1) |
+| 12 | Entrada y salida · 12.1 IRQ |
+| 13 | Protocolo I2C |
+| 14 | Protocolo SPI |
+| 15 | Protocolo USB |
