@@ -82,7 +82,7 @@ add(
   ], [3800, 5560], { mono: [] }),
   H2("Obtener la imagen"),
   ...numList([
-    "Descargar `lab_ntfs.img.zst` del Release `lab2-imagenes` del repositorio y descomprimirla en `laboratorio2/ntfs/` con `zstd -d`.",
+    "Descargar `lab_ntfs.img.zst` del Release `lab2-imagenes` del repositorio y descomprimirla en `laboratorio1/ntfs/` con `zstd -d`.",
     "Verificar la integridad con `sha256sum -c lab_ntfs.img.sha256`.",
     "Ejecutar `ntfs/build_guia_image.sh`: copia la imagen, monta la partición sin privilegios de administrador (`udisksctl`) y crea `LAB_NTFS.txt` en la raíz. El resultado es `lab_ntfs_guia.img`.",
   ]),

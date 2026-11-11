@@ -1,4 +1,4 @@
-# Laboratorio 2: Exploración de discos y sistemas de archivos FAT32 y NTFS
+# Laboratorio 1: Exploración de discos y sistemas de archivos FAT32 y NTFS
 
 Localización manual de archivos y carpetas en imágenes FAT32 y NTFS (sin montarlas), con analizadores en Python que comprueban los cálculos.
 
@@ -24,10 +24,10 @@ Las imágenes superan el límite de 100 MB de GitHub, así que se publican compr
 
 | Imagen | Sistema | Tamaño | Descarga | Destino |
 |---|---|---|---|---|
-| `Arqui22025.img` | FAT32 | 507 MB (469 MB comprimida) | `Arqui22025.img.zst` | `laboratorio2/` |
-| `lab_ntfs.img` | NTFS | 211 MB (2.3 MB comprimida) | `lab_ntfs.img.zst` | `laboratorio2/ntfs/` |
+| `Arqui22025.img` | FAT32 | 507 MB (469 MB comprimida) | `Arqui22025.img.zst` | `laboratorio1/` |
+| `lab_ntfs.img` | NTFS | 211 MB (2.3 MB comprimida) | `lab_ntfs.img.zst` | `laboratorio1/ntfs/` |
 
-Descargar, descomprimir y verificar (desde `laboratorio2/`):
+Descargar, descomprimir y verificar (desde `laboratorio1/`):
 
 ```bash
 gh release download lab2-imagenes -p '*.zst'
@@ -50,7 +50,7 @@ Ojo: `arqui.iso` es FAT16 y **no** es la imagen del laboratorio.
 ## Uso rápido
 
 ```bash
-cd laboratorio2
+cd laboratorio1
 python3 fat32_analyzer.py Arqui22025.img --tree
 python3 fat32_analyzer.py Arqui22025.img --find pdf jpg asm docx
 python3 ntfs/ntfs_analyzer.py ntfs/lab_ntfs.img --tree

@@ -6,7 +6,8 @@ Laboratorios del curso de Arquitectura de Computadores (UCO, 2025-2).
 
 | Carpeta | Tema | Entregable |
 |---|---|---|
-| [`laboratorio2/`](laboratorio2/) | Exploración de discos y sistemas de archivos FAT32 y NTFS | [Informe PDF](laboratorio2/informe/Informe_Laboratorio2_FAT32_NTFS.pdf) |
+| [`laboratorio1/`](laboratorio1/) | Exploración de discos y sistemas de archivos FAT32 y NTFS | [Informe PDF](laboratorio1/informe/Informe_Laboratorio2_FAT32_NTFS.pdf) |
+| [`laboratorio2/`](laboratorio2/) | Construcción de un clúster con Docker Swarm | Guía de laboratorio (en curso, ver [guía de trabajo](laboratorio2/GUIA_TRABAJO.md)) |
 
 Cada carpeta tiene su propio `README.md` con el contenido, cómo obtener los archivos grandes y cómo ejecutar el código.
 
