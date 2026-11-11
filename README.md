@@ -23,7 +23,7 @@ Las imágenes de disco superan el límite de 100 MB por archivo de GitHub, así 
 
 ## Contenidos de clase
 
-La carpeta [`contenidos-clase/`](contenidos-clase/) reúne las diapositivas vistas en el curso, en orden de clase:
+La carpeta [`contenidos-clase/`](contenidos-clase/) reúne las diapositivas vistas en el curso, en orden de clase. Incluye [`repaso-examen.html`](contenidos-clase/repaso-examen.html), una guía de repaso tipo examen con preguntas de todos los temas:
 
 | N.º | Tema |
 |---|---|
