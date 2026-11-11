@@ -1,4 +1,4 @@
-# Guía de estudio – Laboratorio 2 (FAT32 y NTFS)
+# Guía de estudio – Laboratorio 1 (FAT32 y NTFS)
 
 Guía para preparar la sustentación. Todos los números salen de `resultados_fat32.md`, `ntfs/resultados_ntfs.md`, los scripts y el informe. Si el profesor pregunta un dato, aquí está su origen.
 
